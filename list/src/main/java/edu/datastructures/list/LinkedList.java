@@ -35,9 +35,13 @@ public class LinkedList<T> {
     }
 
     public T getNext() {
-        final T element = current.getElement();
-        current = current.getNext();
-        return element;
+        if (current != null) {
+            final T element = current.getElement();
+            current = current.getNext();
+            return element;
+        } else {
+            return null;
+        }
     }
 
     public T getPrevious() {
