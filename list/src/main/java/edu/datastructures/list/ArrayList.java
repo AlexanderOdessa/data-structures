@@ -19,14 +19,33 @@ public class ArrayList<T> {
 
     public void add(T element) {
         data[currentIndex] = element;
+        currentIndex++;
+    }
+
+    public void set(int index, T element) {
+        checkBounds(index);
+        data[index] = element;
     }
 
     public T get(int index) {
-        return null;
+        checkBounds(index);
+        return (T) data[index];
+    }
+
+    private void checkBounds(int index) {
+        if (index < 0 || index >= currentIndex) {
+            throw new IndexOutOfBoundsException("There is no element with index " + index);
+        }
     }
 
     public void remove(int index) {
 
     }
+
+    public int size(){
+        return currentIndex;
+    }
+
+
 
 }
