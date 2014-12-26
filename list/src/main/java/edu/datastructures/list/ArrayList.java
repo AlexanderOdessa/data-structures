@@ -37,7 +37,7 @@ public class ArrayList<T> {
         return (T) data[index];
     }
 
-    private void checkBounds(int index) {
+    protected void checkBounds(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("There is no element with index " + index);
         }
