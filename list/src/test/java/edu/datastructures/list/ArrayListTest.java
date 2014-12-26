@@ -114,4 +114,68 @@ public class ArrayListTest {
 
     }
 
+    @Test
+    public void testAddSize() {
+        defaultCapacityList.add("four");
+        defaultCapacityList.add("five");
+        defaultCapacityList.add("six");
+        defaultCapacityList.add("seven");
+        defaultCapacityList.add("eight");
+        defaultCapacityList.add("nine");
+        defaultCapacityList.add("ten");
+
+        assertEquals(10, defaultCapacityList.data.length);
+
+        defaultCapacityList.add("eleven");
+
+        assertEquals(20, defaultCapacityList.data.length);
+
+        assertEquals("one", defaultCapacityList.get(0));
+        assertEquals("eleven", defaultCapacityList.get(10));
+    }
+
+    @Test
+    public void testSubSize() {
+        defaultCapacityList.add("four");
+        defaultCapacityList.add("five");
+        defaultCapacityList.add("six");
+        defaultCapacityList.add("seven");
+        defaultCapacityList.add("eight");
+        defaultCapacityList.add("nine");
+        defaultCapacityList.add("ten");
+        defaultCapacityList.add("eleven");
+
+        assertEquals(20, defaultCapacityList.data.length);
+
+        defaultCapacityList.remove(3);
+
+        assertEquals(20, defaultCapacityList.data.length);
+
+        assertEquals("one", defaultCapacityList.get(0));
+        assertEquals("three", defaultCapacityList.get(2));
+        assertEquals("five", defaultCapacityList.get(3));
+        assertEquals("eleven", defaultCapacityList.get(9));
+
+        for (int i = 0; i < 4; i++) {
+            defaultCapacityList.remove(3);
+        }
+
+        assertEquals(20, defaultCapacityList.data.length);
+        assertEquals(6, defaultCapacityList.size);
+
+        defaultCapacityList.remove(3);
+
+        assertEquals(10, defaultCapacityList.data.length);
+        assertEquals(5, defaultCapacityList.size);
+
+        assertEquals("one", defaultCapacityList.get(0));
+        assertEquals("two", defaultCapacityList.get(1));
+        assertEquals("three", defaultCapacityList.get(2));
+        assertEquals("ten", defaultCapacityList.get(3));
+        assertEquals("eleven", defaultCapacityList.get(4));
+
+        System.out.println(defaultCapacityList);
+
+    }
+
 }
