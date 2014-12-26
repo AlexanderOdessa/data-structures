@@ -39,7 +39,10 @@ public class ArrayList<T> {
     }
 
     public void remove(int index) {
-
+        checkBounds(index);
+        currentIndex--;
+        System.arraycopy(data, index + 1, data, index, currentIndex - index);
+        data[currentIndex] = null;
     }
 
     public int size(){
