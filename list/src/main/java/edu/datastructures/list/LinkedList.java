@@ -23,7 +23,24 @@ public class LinkedList<T> {
 
     public void remove(int index) {
         checkBounds(index);
-        
+        final ListElement<T> elementToRemove = getListElement(index);
+
+        final ListElement<T> previous = elementToRemove.getPrevious();
+        final ListElement<T> next = elementToRemove.getNext();
+
+        if (previous != null) {
+            previous.setNext(next);
+        }
+        if (next != null) {
+            next.setPrevious(previous);
+        }
+
+        if (first == elementToRemove) {
+            first = next;
+        }
+        if (last == elementToRemove) {
+            last = previous;
+        }
 
         size--;
     }
@@ -38,15 +55,20 @@ public class LinkedList<T> {
 
     public T get(int index) {
         checkBounds(index);
-        ListElement<T> curr = first;
-        for (int i = 0; i < index; i++) {
-            curr = curr.getNext();
-        }
+        ListElement<T> curr = getListElement(index);
         if (curr != null) {
             return curr.getElement();
         } else {
             throw new IndexOutOfBoundsException("There is no such element with index " + index);
         }
+    }
+
+    private ListElement<T> getListElement(int index) {
+        ListElement<T> curr = first;
+        for (int i = 0; i < index; i++) {
+            curr = curr.getNext();
+        }
+        return curr;
     }
 
     private void checkBounds(int index) {
