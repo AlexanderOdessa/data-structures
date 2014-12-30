@@ -7,12 +7,11 @@ public class LinkedList<T> {
 
     protected ListElement<T> first;
     protected ListElement<T> last;
-    protected ListElement<T> current;
     protected int size;
 
     public void add(T element) {
         if (first == null) {
-            first = last = current = new ListElement<T>(element);
+            first = last = new ListElement<T>(element);
         } else {
             ListElement<T> newLast = new ListElement<T>(element, last);
             last.setNext(newLast);
@@ -24,34 +23,8 @@ public class LinkedList<T> {
 
     public void remove(int index) {
         checkBounds(index);
-        ListElement<T> elementToDelete = first;
-        for (int i = 0; i < index; i++) {
-            elementToDelete = elementToDelete.getNext();
-        }
+        
 
-        if (elementToDelete == first) {
-            first = first.getNext();
-            first.setPrevious(null);
-        } else if (elementToDelete == last) {
-            last = last.getPrevious();
-            last.setNext(null);
-        } else {
-            ListElement<T> previous = elementToDelete.getPrevious();
-            ListElement<T> next = elementToDelete.getNext();
-            previous.setNext(next);
-            next.setPrevious(previous);
-        }
-
-        if (elementToDelete == current) {
-            ListElement<T> prevoius = current.getPrevious();
-            current = current.getNext();
-            if (current != null)  {
-                current.setPrevious(prevoius);
-            }
-            if (prevoius != null) {
-                prevoius.setNext(current);
-            }
-        }
         size--;
     }
 
@@ -63,37 +36,17 @@ public class LinkedList<T> {
         return last != null ? first.getElement() : null;
     }
 
-    public T getNext() {
-        //TODO: current is not current now
-        ListElement<T> next = current.getNext();
-        if (next != null) {
-            final T element = next.getElement();
-            current = next;
-            return element;
-        } else {
-            return null;
-        }
-    }
-
-    public T getPrevious() {
-        //TODO: current is not current now
-        ListElement<T> previous = current.getPrevious();
-        if (previous != null) {
-            final T element = previous.getElement();
-            current = previous;
-            return element;
-        } else {
-            return null;
-        }
-    }
-
-    public void setCurrentPosition(int index) {
+    public T get(int index) {
         checkBounds(index);
-        ListElement nextElement = first;
+        ListElement<T> curr = first;
         for (int i = 0; i < index; i++) {
-            nextElement = nextElement.getNext();
+            curr = curr.getNext();
         }
-        current = nextElement;
+        if (curr != null) {
+            return curr.getElement();
+        } else {
+            throw new IndexOutOfBoundsException("There is no such element with index " + index);
+        }
     }
 
     private void checkBounds(int index) {
@@ -144,6 +97,11 @@ public class LinkedList<T> {
 
         public void setNext(ListElement<E> next) {
             this.next = next;
+        }
+
+        @Override
+        public String toString() {
+            return element.toString();
         }
     }
 

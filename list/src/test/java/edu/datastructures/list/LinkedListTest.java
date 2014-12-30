@@ -26,15 +26,9 @@ public class LinkedListTest {
     @Test
     public void testAddList() {
 
-        assertEquals("one", list.getNext());
-        assertEquals("two", list.getNext());
-        assertEquals("three", list.getNext());
-        assertNull(list.getNext());
-        assertNull(list.getNext());
-        assertEquals("three", list.getPrevious());
-        assertEquals("two", list.getPrevious());
-        assertEquals("one", list.getPrevious());
-        assertNull(list.getPrevious());
+        assertEquals("one", list.get(0));
+        assertEquals("two", list.get(1));
+        assertEquals("three", list.get(2));
 
     }
 
@@ -43,10 +37,9 @@ public class LinkedListTest {
         list.remove(1);
 
         assertEquals(2, list.size);
-        assertEquals("one", list.getNext());
-        assertEquals("three", list.getNext());
+        assertEquals("one", list.get(0));
+        assertEquals("three", list.get(1));
 
-        assertNull(list.getNext());
     }
 
     @Test
@@ -54,10 +47,9 @@ public class LinkedListTest {
         list.remove(0);
 
         assertEquals(2, list.size);
-        assertEquals("two", list.getNext());
-        assertEquals("three", list.getNext());
+        assertEquals("two", list.get(0));
+        assertEquals("three", list.get(1));
 
-        assertNull(list.getNext());
     }
 
     @Test
@@ -65,10 +57,9 @@ public class LinkedListTest {
         list.remove(2);
 
         assertEquals(2, list.size);
-        assertEquals("one", list.getNext());
-        assertEquals("two", list.getNext());
+        assertEquals("one", list.get(0));
+        assertEquals("two", list.get(1));
 
-        assertNull(list.getNext());
     }
 
 }
