@@ -1,9 +1,13 @@
 package edu.datastructures.list;
 
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
 /**
  * @author Artem Pronchakov | email/xmpp: artem.pronchakov@calisto.email
  */
-public class LinkedList<T> {
+public class LinkedList<T> implements Iterable<T> {
 
     protected ListElement<T> first;
     protected ListElement<T> last;
@@ -77,6 +81,48 @@ public class LinkedList<T> {
         }
     }
 
+    public int getSize() {
+        return size;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return null;
+    }
+
+    @Override
+    public void forEach(Consumer<? super T> action) {
+
+    }
+
+    @Override
+    public Spliterator<T> spliterator() {
+        return null;
+    }
+
+    protected static class ListIterator implements Iterator {
+
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public Object next() {
+            return null;
+        }
+
+        @Override
+        public void remove() {
+
+        }
+
+        @Override
+        public void forEachRemaining(Consumer action) {
+
+        }
+    }
+
     protected static class ListElement<E> {
         private E element;
         private ListElement<E> previous;
@@ -89,12 +135,6 @@ public class LinkedList<T> {
         public ListElement(E element, ListElement<E> previous) {
             this.element = element;
             this.previous = previous;
-        }
-
-        public ListElement(E element, ListElement<E> previous, ListElement<E> next) {
-            this.element = element;
-            this.previous = previous;
-            this.next = next;
         }
 
         public E getElement() {
