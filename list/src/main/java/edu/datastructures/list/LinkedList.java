@@ -1,6 +1,9 @@
 package edu.datastructures.list;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
@@ -54,7 +57,7 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     public T getLast() {
-        return last != null ? first.getElement() : null;
+        return last != null ? last.getElement() : null;
     }
 
     public T get(int index) {
@@ -87,7 +90,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new ListIterator<T>(first);
     }
 
     @Override
@@ -100,26 +103,34 @@ public class LinkedList<T> implements Iterable<T> {
         return null;
     }
 
-    protected static class ListIterator implements Iterator {
+    protected static class ListIterator<K> implements Iterator<K> {
 
-        @Override
-        public boolean hasNext() {
-            return false;
+        private ListElement<K> next;
+
+        public ListIterator(ListElement<K> next) {
+            this.next = next;
         }
 
         @Override
-        public Object next() {
-            return null;
+        public boolean hasNext() {
+            return next != null;
+        }
+
+        @Override
+        public K next() {
+            K element = next.getElement();
+            next = next.getNext();
+            return element;
         }
 
         @Override
         public void remove() {
-
+            throw new NotImplementedException();
         }
 
         @Override
         public void forEachRemaining(Consumer action) {
-
+            throw new NotImplementedException();
         }
     }
 

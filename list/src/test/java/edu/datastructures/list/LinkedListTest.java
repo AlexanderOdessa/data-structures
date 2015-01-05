@@ -36,6 +36,40 @@ public class LinkedListTest {
     }
 
     @Test
+    public void testNext() {
+
+        LinkedList.ListElement<String> element = list.first;
+        assertEquals("one", element.getElement());
+
+        element = element.getNext();
+        assertEquals("two", element.getElement());
+
+        element = element.getNext();
+        assertEquals("three", element.getElement());
+
+        element = element.getNext();
+        assertNull(element);
+
+    }
+
+    @Test
+    public void testPrevoius() {
+
+        LinkedList.ListElement<String> element = list.last;
+        assertEquals("three", element.getElement());
+
+        element = element.getPrevious();
+        assertEquals("two", element.getElement());
+
+        element = element.getPrevious();
+        assertEquals("one", element.getElement());
+
+        element = element.getPrevious();
+        assertNull(element);
+
+    }
+
+    @Test
     public void testRemove() {
         list.remove(1);
 
@@ -70,17 +104,16 @@ public class LinkedListTest {
 
         int i = 0;
         for(String s: list) {
-            if (i == 0) {
-                assertEquals("one", s);
-            } else if (i == 1) {
-                assertEquals("two", s);
-            } else if (i == 2) {
-                assertEquals("three", s);
-            } else {
-                assertTrue(false);
+            switch (i) {
+                case 0: assertEquals("one", s); break;
+                case 1: assertEquals("two", s); break;
+                case 2: assertEquals("three", s); break;
+                default: assertTrue(false);
             }
             i++;
         }
+
+        assertEquals(3, i);
 
     }
 
