@@ -1,11 +1,6 @@
 package edu.datastructures.list;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.Iterator;
-import java.util.ListIterator;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 /**
  * @author Artem Pronchakov | email/xmpp: artem.pronchakov@calisto.email
@@ -93,16 +88,6 @@ public class LinkedList<T> implements Iterable<T> {
         return new ListIterator<T>(first);
     }
 
-    @Override
-    public void forEach(Consumer<? super T> action) {
-
-    }
-
-    @Override
-    public Spliterator<T> spliterator() {
-        return null;
-    }
-
     protected static class ListIterator<K> implements Iterator<K> {
 
         private ListElement<K> next;
@@ -121,16 +106,6 @@ public class LinkedList<T> implements Iterable<T> {
             K element = next.getElement();
             next = next.getNext();
             return element;
-        }
-
-        @Override
-        public void remove() {
-            throw new NotImplementedException();
-        }
-
-        @Override
-        public void forEachRemaining(Consumer action) {
-            throw new NotImplementedException();
         }
     }
 

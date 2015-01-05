@@ -178,4 +178,19 @@ public class ArrayListTest {
 
     }
 
+    @Test
+    public void testIterable() {
+        int i = 0;
+        for (String s: defaultCapacityList) {
+            switch (i) {
+                case 0: assertEquals("one", s); break;
+                case 1: assertEquals("two", s); break;
+                case 2: assertEquals("three", s); break;
+                default: assertTrue(false);
+            }
+            i++;
+        }
+        assertEquals(3, i);
+    }
+
 }

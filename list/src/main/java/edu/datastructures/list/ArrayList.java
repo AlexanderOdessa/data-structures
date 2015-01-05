@@ -1,9 +1,11 @@
 package edu.datastructures.list;
 
+import java.util.Iterator;
+
 /**
  * @author Artem Pronchakov | email/xmpp: artem.pronchakov@calisto.email
  */
-public class ArrayList<T> {
+public class ArrayList<T> implements Iterable<T> {
 
     protected Object[] data;
     protected static final int DEFAULT_INITIAL_CAPACITY = 10;
@@ -76,5 +78,25 @@ public class ArrayList<T> {
         }
         sb.append(" )");
         return sb.toString();
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ListIterator<>();
+    }
+
+    protected class ListIterator<E> implements Iterator<E> {
+
+        private int currentIndex = 0;
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < size;
+        }
+
+        @Override
+        public E next() {
+            return (E) data[currentIndex++];
+        }
     }
 }
